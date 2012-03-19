@@ -4,3 +4,6 @@ CONFIG -= qt
 
 SOURCES += main.cpp
 
+HEADERS += \
+    stack.h
+
