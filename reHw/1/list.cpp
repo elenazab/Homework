@@ -31,7 +31,7 @@ List :: print()
     while (tmp->getNext() != NULL)
     {
         tmp->setNext(tmp->getNext());
-        cout >> tmp->setValue();
+        cout << tmp->setValue();
     }
 }
 
