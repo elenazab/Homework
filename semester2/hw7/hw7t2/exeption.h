@@ -1,0 +1,7 @@
+class ExeptionAdd
+{
+};
+
+class ExeptionDel
+{
+};
