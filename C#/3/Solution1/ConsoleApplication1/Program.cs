@@ -6,7 +6,7 @@ namespace HashTable
     {
         static void Main()
         {
-             HashTable myTable = new HashTable(2);
+             var myTable = new HashTable(2);
              myTable.Add("ololo");
              myTable.Add("olololo");
              myTable.PrintTable();

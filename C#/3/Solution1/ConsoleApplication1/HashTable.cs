@@ -6,27 +6,12 @@ namespace HashTable
 {
     class HashTable
     {
-        private int n;
-        private LinkedList<string>[] table;
-
-        public HashTable(int N)
+        public HashTable(int n)
         {
-            n = N;
+            this.n = n;
             table = new LinkedList<string>[n];
             for (int i = 0; i < n; i++)
                 table[i] = new LinkedList<string>();
-        }
-
-        private int Function(string s)
-        {
-            int result = 0;
-            int i = 0;
-            while (i < s.Length - 1)
-            {
-                result += s[i];
-                i++;
-            }
-            return result;
         }
 
         public void Add(string s)
@@ -48,12 +33,32 @@ namespace HashTable
         {
             for (int i = 0; i < n; i++)
             {
-                while (table[i].First != null)
-                {
-                    Console.WriteLine(table[i].First.Value);
-                    table[i].RemoveFirst();
-                }
+                foreach(string t in table[i])
+                    Console.WriteLine(t);
             }
         }
+
+        public bool IsExist(string s)
+        {
+            int tmp = Function(s) % n;
+            if (table[tmp].Contains(s))
+                return true;
+            return false;
+        }
+
+        private int Function(string s)
+        {
+            int result = 0;
+            int i = 0;
+            while (i < s.Length - 1)
+            {
+                result += s[i];
+                i++;
+            }
+            return result;
+        }
+
+        private int n;
+        private LinkedList<string>[] table;
     }
 }
