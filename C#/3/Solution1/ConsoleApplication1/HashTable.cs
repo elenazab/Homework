@@ -41,9 +41,7 @@ namespace HashTable
         public bool IsExist(string s)
         {
             int tmp = Function(s) % n;
-            if (table[tmp].Contains(s))
-                return true;
-            return false;
+            return table[tmp].Contains(s);
         }
 
         private int Function(string s)
