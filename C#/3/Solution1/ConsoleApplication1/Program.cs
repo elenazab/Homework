@@ -7,7 +7,7 @@ namespace HashTable
     {
         static void Main()
         {
-            HashFunction ooo = new HahsFunction1;
+            HashFunction1 ooo = new HashFunction1();
             HashTable myTable = new HashTable(2, ooo);
             myTable.Add("ololo");
             myTable.Add("olololo");

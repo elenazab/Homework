@@ -16,13 +16,13 @@ namespace HashTable
 
         public void Add(string s)
         {
-            int tmp = Function(s) % n;
+            int tmp = Function.Function(s) % n;
             table[tmp].AddFirst(s);
         }
 
         public void Del(string s)
         {
-            int tmp = Function(s) % n;
+            int tmp = Function.Function(s) % n;
             if (table[tmp].Contains(s))
                 table[tmp].Remove(s);
             else
@@ -40,7 +40,7 @@ namespace HashTable
 
         public bool IsExist(string s)
         {
-            int tmp = Function(s) % n;
+            int tmp = Function.Function(s) % n;
             return table[tmp].Contains(s);
         }
 
