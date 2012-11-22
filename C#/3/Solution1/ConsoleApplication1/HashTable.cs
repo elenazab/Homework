@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace HashTable
 {
     class HashTable
     {
-        public HashTable(int n)
+        public HashTable(int n, HashFunction f)
         {
             this.n = n;
             table = new LinkedList<string>[n];
             for (int i = 0; i < n; i++)
                 table[i] = new LinkedList<string>();
+            this.Function = f;
         }
 
         public void Add(string s)
@@ -33,7 +33,7 @@ namespace HashTable
         {
             for (int i = 0; i < n; i++)
             {
-                foreach(string t in table[i])
+                foreach (string t in table[i])
                     Console.WriteLine(t);
             }
         }
@@ -44,19 +44,8 @@ namespace HashTable
             return table[tmp].Contains(s);
         }
 
-        private int Function(string s)
-        {
-            int result = 0;
-            int i = 0;
-            while (i < s.Length - 1)
-            {
-                result += s[i];
-                i++;
-            }
-            return result;
-        }
-
         private int n;
         private LinkedList<string>[] table;
+        private HashFunction Function;
     }
 }
