@@ -12,7 +12,7 @@ namespace HashTable
             myTable.Add("ololo");
             myTable.Add("olololo");
             myTable.PrintTable();
-             Console.Read();
+            Console.Read();
         }
     }
 }
