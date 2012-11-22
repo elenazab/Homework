@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HashFunction.cs" />
+    <Compile Include="HashFunction1.cs" />
+    <Compile Include="HashFunction2.cs" />
     <Compile Include="HashTable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
