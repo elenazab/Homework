@@ -1,21 +1,13 @@
 ﻿using System;
 
 
-//namespace HashTable
-//{
-//     abstract public class HashFunction
-//    {
-//        abstract public int Function(string s);
-//    }
-//}
-
 namespace HashTable
 {
     public delegate int HashFunction(string s);
 
     public class Functions
     {
-        public int HahsFunction1(string s)
+        public static int HahsFunction1(string s)
         {
             int result = 0;
             int i = 0;
@@ -26,7 +18,7 @@ namespace HashTable
             }
             return result;
         }
-        public int HahsFunction2(string s)
+        public static int HahsFunction2(string s)
         {
             int result = 0;
             int i = 0;
@@ -37,11 +29,5 @@ namespace HashTable
             }
             return result;
         }
-
-        //void test()
-        //{
-        //    HashFunction ooo = HahsFunction1;
-        //    HashTable myTable = new HashTable(2, ooo);
-        //}
     }
 }

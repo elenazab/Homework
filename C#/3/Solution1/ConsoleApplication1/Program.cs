@@ -7,11 +7,11 @@ namespace HashTable
     {
         static void Main()
         {
-            HashFunction ooo = HahsFunction1;
+            HashFunction ooo = Functions.HahsFunction1;
             HashTable myTable = new HashTable(2, ooo);
-            //myTable.Add("ololo");
-            // myTable.Add("olololo");
-            // myTable.PrintTable();
+            myTable.Add("ololo");
+            myTable.Add("olololo");
+            myTable.PrintTable();
              Console.Read();
         }
     }
