@@ -20,10 +20,10 @@ namespace Calculator
             result = 0;
         }
 
-        public int result;
-        public int operand1;
-        public int operand2;
-        public string myOperator;
+        private int result;
+        private int operand1;
+        private int operand2;
+        private string myOperator;
 
         private void button1_Click(object sender, EventArgs e)
         {
