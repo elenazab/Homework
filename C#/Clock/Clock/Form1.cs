@@ -15,9 +15,9 @@ namespace Clock
         public Form1()
         {
             InitializeComponent();
+            timer1.Enabled = true;
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
             DateTime time = DateTime.Now;
             label1.Text = time.ToLongTimeString();
