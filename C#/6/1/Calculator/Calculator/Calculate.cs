@@ -3,7 +3,7 @@
 
 namespace Calculator
 {
-    public class myCalculate
+    public class MyCalculate
     {
         public static int Calc(int oper1, int oper2, string operat)
         {

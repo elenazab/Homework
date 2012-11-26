@@ -17,97 +17,110 @@ namespace Calculator
         {
             InitializeComponent();
             textBox1.ResetText();
-            result = 0;
+            isEmptyTextBox = true;
         }
 
         private int result;
         private int operand1;
         private int operand2;
         private string myOperator;
+        private bool isEmptyTextBox;
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text += "1";
+            DigitClick(1);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
-            textBox1.Text += "2";
+            DigitClick(2);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
-            textBox1.Text += "3";
+            DigitClick(3);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
-            textBox1.Text += "4";
+            DigitClick(4);
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
-            textBox1.Text += "5";
+            DigitClick(5);
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void Button6_Click(object sender, EventArgs e)
         {
-            textBox1.Text += "6";
+            DigitClick(6);
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void Button7_Click(object sender, EventArgs e)
         {
-            textBox1.Text += "7";
+            DigitClick(7);
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void Button8_Click(object sender, EventArgs e)
         {
-            textBox1.Text += "8";
+            DigitClick(8);
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void Button9_Click(object sender, EventArgs e)
         {
-            textBox1.Text += "9";
+            DigitClick(9);
         }
 
-        private void button0_Click(object sender, EventArgs e)
+        private void Button0_Click(object sender, EventArgs e)
         {
-            textBox1.Text += "0";
+            DigitClick(0);
         }
 
-        private void buttonAddition_Click(object sender, EventArgs e)
+        private void DigitClick(int x)
         {
-            operand1 = int.Parse(textBox1.Text);
+            if (isEmptyTextBox == true)
+                textBox1.Text = x.ToString();
+            else
+                textBox1.Text += x.ToString();
+            isEmptyTextBox = false;
+        }
+
+        private void ButtonAddition_Click(object sender, EventArgs e)
+        {
             myOperator = "+";
-            textBox1.ResetText();
+            OperationClick();
         }
 
-        private void buttonSubtraction_Click(object sender, EventArgs e)
+        private void ButtonSubtraction_Click(object sender, EventArgs e)
         {
-            operand1 = int.Parse(textBox1.Text);
             myOperator = "-";
-            textBox1.ResetText();
+            OperationClick();
         }
 
-        private void buttonMultiplication_Click(object sender, EventArgs e)
+        private void ButtonMultiplication_Click(object sender, EventArgs e)
         {
-            operand1 = int.Parse(textBox1.Text);
             myOperator = "*";
-            textBox1.ResetText();
+            OperationClick();
         }
 
-        private void buttonDivision_Click(object sender, EventArgs e)
+        private void ButtonDivision_Click(object sender, EventArgs e)
+        {
+            myOperator = "/";
+            OperationClick();
+        }
+
+        private void OperationClick()
         {
             operand1 = int.Parse(textBox1.Text);
-            myOperator = "/";
             textBox1.ResetText();
         }
 
-        private void buttonEquality_Click(object sender, EventArgs e)
+        private void ButtonEquality_Click(object sender, EventArgs e)
         {
             operand2 = int.Parse(textBox1.Text);
-            result = myCalculate.Calc(operand1, operand2, myOperator);
+            result = MyCalculate.Calc(operand1, operand2, myOperator);
             textBox1.Text = result.ToString();
+            isEmptyTextBox = true;
         }
     }
 }
