@@ -88,38 +88,34 @@ namespace Calculator
 
         private void ButtonAddition_Click(object sender, EventArgs e)
         {
-            if (myOperator != " ")
-                SecondOperation();
-            else
-                OperationClick();
+            ButtonOperation();
             myOperator = "+";
         }
 
         private void ButtonSubtraction_Click(object sender, EventArgs e)
         {
-            if (myOperator != " ")
-                SecondOperation();
-            else
-            OperationClick();
+            ButtonOperation();
             myOperator = "-";
         }
 
         private void ButtonMultiplication_Click(object sender, EventArgs e)
         {
-            if (myOperator != " ")
-                SecondOperation();
-            else
-            OperationClick();
+            ButtonOperation();
             myOperator = "*";
         }
 
         private void ButtonDivision_Click(object sender, EventArgs e)
         {
+            ButtonOperation();
+            myOperator = "/";
+        }
+
+        private void ButtonOperation()
+        {
             if (myOperator != " ")
                 SecondOperation();
             else
-            OperationClick();
-            myOperator = "/";
+                OperationClick();
         }
 
         private void OperationClick()
