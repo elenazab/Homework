@@ -18,6 +18,7 @@ namespace Calculator
             InitializeComponent();
             textBox1.ResetText();
             isEmptyTextBox = true;
+            myOperator = " ";
         }
 
         private int result;
@@ -78,7 +79,7 @@ namespace Calculator
 
         private void DigitClick(int x)
         {
-            if (isEmptyTextBox == true)
+            if (isEmptyTextBox)
                 textBox1.Text = x.ToString();
             else
                 textBox1.Text += x.ToString();
@@ -87,40 +88,68 @@ namespace Calculator
 
         private void ButtonAddition_Click(object sender, EventArgs e)
         {
+            if (myOperator != " ")
+                SecondOperation();
+            else
+                OperationClick();
             myOperator = "+";
-            OperationClick();
         }
 
         private void ButtonSubtraction_Click(object sender, EventArgs e)
         {
-            myOperator = "-";
+            if (myOperator != " ")
+                SecondOperation();
+            else
             OperationClick();
+            myOperator = "-";
         }
 
         private void ButtonMultiplication_Click(object sender, EventArgs e)
         {
-            myOperator = "*";
+            if (myOperator != " ")
+                SecondOperation();
+            else
             OperationClick();
+            myOperator = "*";
         }
 
         private void ButtonDivision_Click(object sender, EventArgs e)
         {
-            myOperator = "/";
+            if (myOperator != " ")
+                SecondOperation();
+            else
             OperationClick();
+            myOperator = "/";
         }
 
         private void OperationClick()
         {
-            operand1 = int.Parse(textBox1.Text);
+            if (textBox1.Text == "error")
+                operand1 = 0;
+            else
+                operand1 = int.Parse(textBox1.Text);
+            textBox1.ResetText();
+        }
+
+        private void SecondOperation()
+        {
+            operand1 = MyCalculate.Calc(operand1, int.Parse(textBox1.Text), myOperator);
             textBox1.ResetText();
         }
 
         private void ButtonEquality_Click(object sender, EventArgs e)
         {
             operand2 = int.Parse(textBox1.Text);
-            result = MyCalculate.Calc(operand1, operand2, myOperator);
-            textBox1.Text = result.ToString();
+            if (operand2 == 0 && myOperator == "/")
+                textBox1.Text = "error";
+            else
+            {
+                result = MyCalculate.Calc(operand1, operand2, myOperator);
+                textBox1.Text = result.ToString();
+            }
             isEmptyTextBox = true;
+            operand1 = result;
+            myOperator = " ";
         }
     }
 }
