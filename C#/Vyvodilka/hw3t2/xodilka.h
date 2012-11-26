@@ -36,32 +36,32 @@ void Xodilka<T>::obojty(T massiv[][size])
         {
             for (int k = 0; k < line; k++)
             {
+                if (i - 1 < 0 || i - 1 >= size || j < 0 || j >= size) return;
                 vyvod->vyvesty(massiv[i-1][j]);
                 i--;
-                if (i < 0) return;
             }
             for (int k = 0; k < line; k++)
             {
+                if (i < 0 || i >= size || j + 1 < 0 || j + 1 >= size) return;
                 vyvod->vyvesty(massiv[i][j+1]);
                 j++;
-                if (j >= size) return;
             }
         }
         if (!(line%2))
         {
             for (int k = 0; k < line; k++)
             {
+                if (i + 1 < 0 || i + 1 >= size || j < 0 || j >= size) return;
                 vyvod->vyvesty(massiv[i+1][j]);
                 i++;
-                if (i >= size) return;
             }
             for (int k = 0; k < line; k++)
             {
+                if (i < 0 || i >= size || j - 1 < 0 || j - 1 >= size) return;
                 vyvod->vyvesty(massiv[i][j-1]);
                 j--;
-                if (j < 0) return;
             }
         }
         line ++;
-    } while (line < size);
+    } while (line <= size);
 }

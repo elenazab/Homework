@@ -26,7 +26,6 @@ private slots:
         //!!!!!!!!!!
     }
 
-
 private:
     Vyvodilka<int> *obj;
 };
