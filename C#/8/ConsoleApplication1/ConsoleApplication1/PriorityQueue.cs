@@ -3,7 +3,7 @@
 
 namespace ConsoleApplication1
 {
-    class PriorityQueue<T>
+    public class PriorityQueue<T>
     {
         private class ListElement
         {

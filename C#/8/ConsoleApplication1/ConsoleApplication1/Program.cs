@@ -18,7 +18,7 @@ namespace ConsoleApplication1
                 {
                     val = intQueue.Dequeue();
                 }
-                catch (QueueExeption e)
+                catch (QueueExeption)
                 {
                     break;
                 }

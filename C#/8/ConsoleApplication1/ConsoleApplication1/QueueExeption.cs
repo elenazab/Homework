@@ -2,7 +2,7 @@
 
 namespace ConsoleApplication1
 {
-    class QueueExeption: Exception
+    public class QueueExeption: Exception
     {
     }
 }
