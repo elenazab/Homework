@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace ConsoleApplication1
+namespace Homework8
 {
     class Program
     {
@@ -18,7 +18,7 @@ namespace ConsoleApplication1
                 {
                     val = intQueue.Dequeue();
                 }
-                catch (QueueExeption)
+                catch (QueueException)
                 {
                     break;
                 }

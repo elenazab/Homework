@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace ConsoleApplication1
+namespace Homework8
 {
     public class PriorityQueue<T>
     {
@@ -62,7 +62,7 @@ namespace ConsoleApplication1
         public T Dequeue()
         {
             if (head.GetNext() == null)
-                throw new QueueExeption();
+                throw new QueueException();
             ListElement tmp = head.GetNext();
             head.SetNext(tmp.GetNext());
             return tmp.GetValue();

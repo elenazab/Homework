@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ConsoleApplication1
+namespace Homework8
 {
-    public class QueueExeption: Exception
+    public class QueueException: Exception
     {
     }
 }
