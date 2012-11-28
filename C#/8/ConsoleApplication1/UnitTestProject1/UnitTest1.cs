@@ -18,5 +18,13 @@ namespace UnitTestProject1
             Assert.IsTrue(testQueue.Dequeue() == 5);
             Assert.IsTrue(testQueue.Dequeue() == 10);
         }
+
+        [ExpectedException(typeof(ConsoleApplication1.QueueException))]
+        [TestMethod]
+        public void ExceptionTest()
+        {
+            var testQueue = new PriorityQueue<int>();
+            testQueue.Dequeue();
+        }
     }
 }
