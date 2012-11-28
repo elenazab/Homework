@@ -50,7 +50,7 @@ namespace Homework8
         public void Enqueue(T val, int prio)
         {
             ListElement l = head;
-            while (l.GetNext() != null && l.GetNext().GetPrio() > prio)
+            while (l.GetNext() != null && l.GetNext().GetPrio() >= prio)
             {
                 l = l.GetNext();
             }
