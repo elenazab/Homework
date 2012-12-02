@@ -3,7 +3,7 @@ using System;
 
 namespace hw7t1
 {
-    public class Iterator<T>: IEnumerator<List<T>.ListElement>
+    public class Iterator<T>: IEnumerator<T>
     {
         private List<T> mCollection;
         private List<T>.ListElement curListElement;
@@ -23,11 +23,11 @@ namespace hw7t1
             return true;
         }
 
-public List<T>.ListElement Current
+public T Current
 {
     get 
     {
-        return curListElement;
+        return curListElement.GetValue();
     }
 }
 public void Reset()

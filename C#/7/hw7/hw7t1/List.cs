@@ -3,6 +3,11 @@ namespace hw7t1
 {
     public class List<T>
     {
+        public Iterator<T> GetEnumerator()
+        {
+            return new Iterator<T>(this);
+        }
+
         public class ListElement
         {
             public ListElement()
