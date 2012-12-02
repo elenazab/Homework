@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace hw7t1
 {
-    public class Iterator: IEnumerator<ListElement>
+    public class Iterator<T>: IEnumerator<List<T>.ListElement>
     {
         private List<T> mCollection;
-        private ListElement curListElement;
+        private List<T>.ListElement curListElement;
 
         public Iterator(List<T> collection)
         {
@@ -15,14 +16,14 @@ namespace hw7t1
 
         public bool MoveNext()
         {
-            if (!curListElement.GetNext())
+            if (curListElement.GetNext()!=null)
                 return false;
             else
                 curListElement.SetNext(curListElement.GetNext());
             return true;
         }
 
-public T Current
+public List<T>.ListElement Current
 {
     get 
     {
@@ -34,7 +35,9 @@ public void Reset()
     curListElement = mCollection.head;
 }
 
-    object IEnumerator.Current
+void IDisposable.Dispose() { }
+
+object System.Collections.IEnumerator.Current
     {
         get
         {

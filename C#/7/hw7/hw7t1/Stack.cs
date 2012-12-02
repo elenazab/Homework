@@ -22,6 +22,6 @@ namespace hw7t1
             return tmp.GetValue();
         }
 
-        private ListElement head;
+        //private ListElement head;
     }
 }
