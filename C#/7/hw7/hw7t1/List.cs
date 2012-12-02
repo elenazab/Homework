@@ -1,20 +1,17 @@
-﻿using System;
-
-
-namespace Homework8
+﻿
+namespace hw7t1
 {
-    public class PriorityQueue<T>
+    public class List<T>
     {
-        private class ListElement
+        public class ListElement
         {
             public ListElement()
             { }
 
-            public ListElement (T v, int p)
+            public ListElement (T v)
             {
                 next = null;
                 value = v;
-                prio = p;
             }
 
             public ListElement GetNext()
@@ -32,42 +29,34 @@ namespace Homework8
                 return value;
             }
 
-            public int GetPrio()
-            {
-                return prio;
-            }
-
             private T value;
             private ListElement next;
-            private int prio;
         }
 
-        public PriorityQueue()
+        public List()
         {
             head = new ListElement();
         }
 
-        public void Enqueue(T val, int prio)
+        public void Add(T val)
         {
             ListElement l = head;
-            while (l.GetNext() != null && l.GetNext().GetPrio() >= prio)
+            while (l.GetNext() != null)
             {
                 l = l.GetNext();
             }
-            ListElement tmp = new ListElement(val, prio);
+            ListElement tmp = new ListElement(val);
             tmp.SetNext(l.GetNext());
             l.SetNext(tmp);
         }
 
-        public T Dequeue()
+        public T Del()
         {
-            if (head.GetNext() == null)
-                throw new QueueException();
             ListElement tmp = head.GetNext();
             head.SetNext(tmp.GetNext());
             return tmp.GetValue();
         }
 
-        private ListElement head;
+    public ListElement head;
     }
 }
