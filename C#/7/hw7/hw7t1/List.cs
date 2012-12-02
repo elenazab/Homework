@@ -1,9 +1,12 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+
 namespace hw7t1
 {
-    public class List<T>
+    public class List<T>: IEnumerable<T>
     {
-        public Iterator<T> GetEnumerator()
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             return new Iterator<T>(this);
         }

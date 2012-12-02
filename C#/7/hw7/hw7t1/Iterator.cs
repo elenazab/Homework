@@ -16,7 +16,7 @@ namespace hw7t1
 
         public bool MoveNext()
         {
-            if (curListElement.GetNext()!=null)
+            if (curListElement.GetNext()==null)
                 return false;
             else
                 curListElement.SetNext(curListElement.GetNext());
