@@ -17,11 +17,11 @@ namespace hw7t1
 
         public T Pop()
         {
+            if (head.GetNext() == null)
+                throw new ListException();
             var tmp = head.GetNext();
             head.SetNext(tmp.GetNext());
             return tmp.GetValue();
         }
-
-        //private ListElement head;
     }
 }

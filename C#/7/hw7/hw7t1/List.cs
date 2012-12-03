@@ -6,6 +6,11 @@ namespace hw7t1
     public class List<T>: IEnumerable<T>
     {
 
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return new Iterator<T>(this);
+        }
+
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             return new Iterator<T>(this);
@@ -60,6 +65,8 @@ namespace hw7t1
 
         public T Del()
         {
+            if (head.GetNext() == null)
+                throw new ListException();
             ListElement tmp = head.GetNext();
             head.SetNext(tmp.GetNext());
             return tmp.GetValue();

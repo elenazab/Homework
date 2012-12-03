@@ -7,14 +7,15 @@ namespace hw7t1
     {
         static void Main()
         {
-            List<int> tmpList = new List<int>();
-            tmpList.Add(1);
-            tmpList.Add(2);
-            tmpList.Add(3);
-            foreach(int i in tmpList)
-            {
-                Console.Write(i);
-            }
+            Stack<int> mStack = new Stack<int>();
+            mStack.Push(1);
+            mStack.Push(2);
+            mStack.Push(3);
+            var i = mStack.Pop();
+            i = mStack.Pop();
+            i = mStack.Pop();
+            i = mStack.Pop();
+            Console.WriteLine(i);
             Console.Read();
         }
     }
