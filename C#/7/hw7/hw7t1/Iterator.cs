@@ -37,12 +37,12 @@ namespace hw7t1
         void IDisposable.Dispose() { }
 
         object System.Collections.IEnumerator.Current
+        {
+            get
             {
-                get
-                {
-                    return Current;
-                }
+                return Current;
             }
+        }
 
         private List<T> mCollection;
         private List<T>.ListElement curListElement;

@@ -18,7 +18,7 @@ namespace hw7t1
         public T Pop()
         {
             if (head.GetNext() == null)
-                throw new ListException();
+                throw new StackException();
             var tmp = head.GetNext();
             head.SetNext(tmp.GetNext());
             return tmp.GetValue();

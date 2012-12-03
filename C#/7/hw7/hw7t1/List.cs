@@ -71,7 +71,7 @@ namespace hw7t1
             head.SetNext(tmp.GetNext());
             return tmp.GetValue();
         }
-
-    public ListElement head;
+        
+        public ListElement head;
     }
 }
