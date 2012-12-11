@@ -9,7 +9,7 @@
         }
         abstract public double Calculate();
         abstract public void Print();
-        public Tree Left;
-        public Tree Right;
+        public Tree Left {get; set;}
+        public Tree Right {get; set;}
     }
 }
