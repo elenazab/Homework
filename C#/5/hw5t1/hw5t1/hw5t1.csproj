@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractOperation.cs" />
     <Compile Include="Division.cs" />
     <Compile Include="Minus.cs" />
     <Compile Include="Multiplication.cs" />
@@ -49,7 +50,7 @@
     <Compile Include="Plus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tree.cs" />
+    <Compile Include="TreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

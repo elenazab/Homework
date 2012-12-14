@@ -2,7 +2,7 @@
 
 namespace hw5t1
 {
-    public class Operand: Tree
+    public class Operand: TreeNode
     {
         public override double Calculate()
         {

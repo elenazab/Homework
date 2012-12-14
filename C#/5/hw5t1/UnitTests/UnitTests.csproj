@@ -58,6 +58,7 @@
     <Compile Include="MinusTest.cs" />
     <Compile Include="DivTest.cs" />
     <Compile Include="MultTest.cs" />
+    <Compile Include="ParsTest.cs" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
