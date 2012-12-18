@@ -4,7 +4,7 @@ namespace hw5t1
 {
     public class Parser
     {
-        public TreeNode BuildTree(string s, int i)
+        public TreeNode BuildTree(string s, ref int i)
         {
             i++;
             if (s[i] == ')')
@@ -12,7 +12,7 @@ namespace hw5t1
             if (s[i] == '(')
             {
                 i++;
-                AbstractOperation newTree = new AbstractOperation();
+                AbstractOperation newTree = null;
                 if (s[i] == '+')
                     newTree = new Plus();
                 if (s[i] == '-')
@@ -21,16 +21,16 @@ namespace hw5t1
                     newTree = new Multiplication();
                 if (s[i] == '/')
                     newTree = new Division();
-                newTree.Left = this.BuildTree(s, i);
-                newTree.Right = this.BuildTree(s, i);
+                newTree.Left = this.BuildTree(s, ref i);
+                newTree.Right = this.BuildTree(s, ref i);
                 return newTree;
             }
             else if (Char.IsDigit(s[i]))
-            {//  а в чем смысл того, что нельзя инициализировать переменную после if()? пришлось ставить скобки, чтобы скомпилилось.
+            {
                 Operand newTree = new Operand(Convert.ToInt32(s[i]) - '0');
                 return newTree;
             }
-            return null;// а без этого можно? у меня никак не работало
+            return null;
         }
     }
 }

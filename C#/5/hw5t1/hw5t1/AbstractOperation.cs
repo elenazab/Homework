@@ -1,7 +1,7 @@
 ﻿
 namespace hw5t1
 {
-    public class AbstractOperation: TreeNode
+    abstract public class AbstractOperation: TreeNode
     {
         public AbstractOperation()
         {

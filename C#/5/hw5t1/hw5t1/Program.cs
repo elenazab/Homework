@@ -6,6 +6,7 @@ namespace hw5t1
     {
         static void Main()
         {
+
         }
     }
 }
