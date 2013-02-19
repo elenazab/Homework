@@ -21,6 +21,7 @@ namespace Map
         }
 
         public Tile[][] mapArray {get; set;}
+
         public int MapSize
         {
             get

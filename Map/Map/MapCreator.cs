@@ -17,6 +17,14 @@ namespace Map
             this.DeleteSingleTile();
         }
 
+        public Map NewMap
+        {
+            get
+            {
+                return newMap;
+            }
+        }
+
         private void CreateObject(Tile tileType)
         {
             this.Growing(rnd.Next(0, mapSize), rnd.Next(0, mapSize), tileType);
@@ -33,7 +41,7 @@ namespace Map
 
         private void AddTile(int i, int j, Tile tileType)
         {
-            if (rnd.Next(0, 5) > 2 
+            if (rnd.Next(0, 5) > 2
                 && i >= 0 && i < mapSize && j >= 0 && j < mapSize
                 && newMap.mapArray[i][j].Icon == '~')
             {
@@ -51,10 +59,10 @@ namespace Map
                 {
                     if (newMap.mapArray[i][j].Icon != newMap.mapArray[i + 1][j].Icon
                         && newMap.mapArray[i][j].Icon != newMap.mapArray[i - 1][j].Icon
-                        && newMap.mapArray[i][j].Icon != newMap.mapArray[i][j+1].Icon
-                        && newMap.mapArray[i][j].Icon != newMap.mapArray[i][j-1].Icon)
+                        && newMap.mapArray[i][j].Icon != newMap.mapArray[i][j + 1].Icon
+                        && newMap.mapArray[i][j].Icon != newMap.mapArray[i][j - 1].Icon)
                     {
-                        newMap.mapArray[i][j]= newMap.mapArray[i + 1][j];
+                        newMap.mapArray[i][j] = newMap.mapArray[i + 1][j];
                     }
                 }
             }
@@ -62,45 +70,38 @@ namespace Map
 
         private void RemoveIsolatedTwoTileGroup()
         {
-            for (var i = 2; i < mapSize-2; i++)
+            for (var i = 2; i < mapSize - 2; i++)
             {
-                for (var j = 2; j < mapSize-2; j++)
+                for (var j = 2; j < mapSize - 2; j++)
                 {
                     if (Count(i, j) < 3)
                     {
-                        newMap.mapArray[i - 1][j] = newMap.mapArray[i -2][j];
+                        newMap.mapArray[i - 1][j] = newMap.mapArray[i - 2][j];
                         newMap.mapArray[i + 1][j] = newMap.mapArray[i + 2][j];
-                        newMap.mapArray[i][j-1] = newMap.mapArray[i][j-2];
-                        newMap.mapArray[i][j+1] = newMap.mapArray[i][j+2];
+                        newMap.mapArray[i][j - 1] = newMap.mapArray[i][j - 2];
+                        newMap.mapArray[i][j + 1] = newMap.mapArray[i][j + 2];
                     }
                 }
             }
         }
 
-        private int Count (int i, int j)
+        private int Count(int i, int j)
         {
             var tmp = 0;
             if (newMap.mapArray[i][j].Icon == newMap.mapArray[i][j - 1].Icon)
                 tmp++;
             if (newMap.mapArray[i][j].Icon == newMap.mapArray[i][j + 1].Icon)
                 tmp++;
-            if (newMap.mapArray[i][j].Icon == newMap.mapArray[i-1][j].Icon)
+            if (newMap.mapArray[i][j].Icon == newMap.mapArray[i - 1][j].Icon)
                 tmp++;
-            if (newMap.mapArray[i][j].Icon == newMap.mapArray[i+1][j].Icon)
+            if (newMap.mapArray[i][j].Icon == newMap.mapArray[i + 1][j].Icon)
                 tmp++;
             return tmp;
         }
 
+        private int mapSize;
         private Random rnd = new Random();
         private int notWaterTile;
         private Map newMap;
-        public Map NewMap
-        {
-            get
-            {
-                return newMap;
-            }
-        }
-        private int mapSize;
     }
 }
