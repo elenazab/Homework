@@ -25,6 +25,12 @@ namespace Map
             }
         }
 
+        //public void AddCharacter(int coordinateX, int coordinateY)
+        //{
+        //    NewMap.mapArray[coordinateX][coordinateY] = new Character();
+
+        //}
+
         private void CreateObject(Tile tileType)
         {
             this.Growing(rnd.Next(0, mapSize), rnd.Next(0, mapSize), tileType);
@@ -35,8 +41,7 @@ namespace Map
             this.AddTile(i + 1, j, tileType);
             this.AddTile(i - 1, j, tileType);
             this.AddTile(i, j + 1, tileType);
-            this.AddTile(i, j - 1, tileType);//еще можно добавить клетки по диаг
-            //нельзя
+            this.AddTile(i, j - 1, tileType);
         }
 
         private void AddTile(int i, int j, Tile tileType)

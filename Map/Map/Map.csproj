@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="Forest.cs" />
+    <Compile Include="GameplayController.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapCreator.cs" />
     <Compile Include="MapRenderer.cs" />

@@ -6,8 +6,7 @@ namespace Map
     {
         static void Main(string[] args)
         {
-            var test = new MapCreator(60);
-            var renderer = new MapRenderer(test.NewMap);
+            var test = new GameplayController();
             Console.ReadKey();
         }
     }
