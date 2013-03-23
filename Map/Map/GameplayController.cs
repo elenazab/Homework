@@ -7,39 +7,50 @@ namespace Map
         public GameplayController()
         {
             mapSize = 20;
-            var testGame = new MapCreator(mapSize);
+            var testGame = new MapAutoCreator(mapSize);
             playersCoordinateX = rnd.Next(0, mapSize);
             playersCoordinateY = rnd.Next(0, mapSize);
-            //test.AddCharacter(PlayersCoordinateX, PlayersCoordinateY);
             var renderer = new MapRenderer(testGame.NewMap, playersCoordinateX, playersCoordinateY);
             var testCharacter = new Character();
             this.Move(testGame, testCharacter);
         }
 
-        private void Move(MapCreator test, Character testCharacter)
+        /// <summary>
+        /// ololo
+        /// </summary>
+        /// <param name="test"></param>
+        /// <param name="testCharacter"></param>
+        private void Move(MapAutoCreator test, Character testCharacter)
         {
+
+            var tmpTile0 = test.NewMap.mapArray[playersCoordinateX][playersCoordinateY];
+            test.NewMap.mapArray[playersCoordinateX][playersCoordinateY] = testCharacter;
+            var renderer0 = new MapRenderer(test.NewMap, playersCoordinateX, playersCoordinateY);
+            test.NewMap.mapArray[playersCoordinateX][playersCoordinateY] = tmpTile0;
+
             while (!this.GameOver())
             {
-                //playersCoordinateX += rnd.Next(-1, 2);
-                //playersCoordinateY += rnd.Next(-1, 2);
                 if (playersCoordinateX >= 0 && playersCoordinateX < mapSize
                     && playersCoordinateY >= 0 && playersCoordinateY < mapSize
-                    && test.NewMap.mapArray[playersCoordinateX][playersCoordinateY].Icon != '~')
+                    && test.NewMap.mapArray[playersCoordinateX][playersCoordinateY].TileIcon != '~')
                 {
                     var tmpTile = test.NewMap.mapArray[playersCoordinateX][playersCoordinateY];
                     test.NewMap.mapArray[playersCoordinateX][playersCoordinateY] = testCharacter;
-                    //test.AddCharacter(PlayersCoordinateX, PlayersCoordinateY);
-                    var renderer = new MapRenderer(test.NewMap, playersCoordinateX, playersCoordinateY);
-                    Console.ReadKey();
-                    //Console.Clear();
-                    //Console.Write(playersCoordinateX);
-                    //Console.ReadKey();
+                    renderer0.F5(playersCoordinateX, playersCoordinateY, testCharacter);
+                    //var renderer = new MapRenderer(test.NewMap, playersCoordinateX, playersCoordinateY);
+                    Console.ReadKey(true);
+                    renderer0.F5(playersCoordinateX, playersCoordinateY, tmpTile);
                     test.NewMap.mapArray[playersCoordinateX][playersCoordinateY] = tmpTile;
                 }
-                playersCoordinateX += rnd.Next(-2, 3);
-                playersCoordinateY += rnd.Next(-2, 3);
+                    playersCoordinateX += rnd.Next(-2, 3);
+                    playersCoordinateY += rnd.Next(-2, 3);
             }
         }
+
+
+
+
+
 
         private bool GameOver()
         {
@@ -48,7 +59,7 @@ namespace Map
 
         private int playersCoordinateX;
         private int playersCoordinateY;
-        private Random rnd = new Random();
+        private Random rnd = SingletonRandom.Instance();
         private int mapSize;
     }
 }

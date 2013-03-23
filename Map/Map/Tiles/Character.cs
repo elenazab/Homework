@@ -6,10 +6,15 @@ namespace Map
     {
         public Character()
         {
-            icon = 'I';
-            color = ConsoleColor.White;
+            tileIcon = ' ';
+            tileColor = ConsoleColor.White;
             //CoordinateX = x;
             //CoordinateY = y;
+        }
+
+        public override Tile Clone()
+        {
+            return new Character();
         }
 
         //public int CoordinateX {get; set; }////////////////////

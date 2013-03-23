@@ -6,11 +6,17 @@ namespace Map
     {
         public MapRenderer(Map map, int x, int y)
         {
-            //consoleSize = 10;//42
             Console.Title = "Map";
             Console.Clear();
             this.DisplayMap(map);
             this.DisplayMenu();
+        }
+
+        public void F5(int x, int y, Tile movedObject)
+        {
+            Console.SetCursorPosition(x, y);
+            Console.BackgroundColor = movedObject.TileColor;
+            Console.Write(movedObject.TileIcon);
         }
 
         private void DisplayMap(Map map)
@@ -19,37 +25,18 @@ namespace Map
             {
                 for (var j = 0; j < map.MapSize; j++)
                 {
-                    Console.ForegroundColor = map.mapArray[i][j].Color;
-                    Console.Write(map.mapArray[i][j].Icon);
+                    //Console.ForegroundColor = map.mapArray[i][j].Color;
+                    Console.BackgroundColor = map.mapArray[i][j].TileColor;
+                    Console.Write(map.mapArray[i][j].TileIcon);
                 }
                 Console.WriteLine(' ');
             }
         }
-
-        //private void DisplayMap(Map map, int x, int y)
-        //{
-        //    for (var i = x - consoleSize; i < x + consoleSize; i++)
-        //    {
-        //        for (var j = y - consoleSize; j < y + consoleSize; j++)
-        //        {
-        //            if (i >= 0 && i < map.MapSize && j >= 0 && j < map.MapSize)
-        //            {
-        //                Console.ForegroundColor = map.mapArray[i][j].Color;
-        //                Console.Write(map.mapArray[i][j].Icon);
-        //            }
-        //        }
-        //        Console.WriteLine(' ');
-        //    }
-        //}
 
         private void DisplayMenu()
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Menu \n ");
         }
-
-        //private int consoleSize;
-        //private int coordinateX;
-        //private int coordinateY;
     }
 }
