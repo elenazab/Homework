@@ -4,48 +4,44 @@ namespace Map
 {
     class MapAutoCreator: MapCreator
     {
-        public MapAutoCreator(int mapSize)
+        public Map AutoCreator(int mapSize)
         {
             this.mapSize = mapSize;
             newMap = new Map(mapSize);
+            notWaterTile = 0;
             while (notWaterTile < mapSize * mapSize * 6 / 7)//цифры изменить на что
             {
                 this.CreateObject(new Field());
                 this.CreateObject(new Forest());
+                this.CreateObject(new Swamp());
             }
             this.RemoveIsolatedTwoTileGroup();
             this.DeleteSingleTile();
+            //this.AddTree();
+            return newMap;
         }
 
-        public Map NewMap
+        private void CreateObject(Terrain terrainType)
         {
-            get
-            {
-                return newMap;
-            }
+            this.Growing(rnd.Next(0, mapSize), rnd.Next(0, mapSize), terrainType);
         }
 
-        private void CreateObject(Tile tileType)
+        private void Growing(int i, int j, Terrain terrainType)
         {
-            this.Growing(rnd.Next(0, mapSize), rnd.Next(0, mapSize), tileType);
+            this.AddTile(i + 1, j, terrainType);
+            this.AddTile(i - 1, j, terrainType);
+            this.AddTile(i, j + 1, terrainType);
+            this.AddTile(i, j - 1, terrainType);
         }
 
-        private void Growing(int i, int j, Tile tileType)
-        {
-            this.AddTile(i + 1, j, tileType);
-            this.AddTile(i - 1, j, tileType);
-            this.AddTile(i, j + 1, tileType);
-            this.AddTile(i, j - 1, tileType);
-        }
-
-        private void AddTile(int i, int j, Tile tileType)
+        private void AddTile(int i, int j, Terrain terrainType)
         {
             if (rnd.Next(0, 5) > 2
                 && i >= 0 && i < mapSize && j >= 0 && j < mapSize
-                && newMap.mapArray[i][j].TileIcon == '~')
+                && newMap.mapArray[i][j].Terrain is Water)
             {
-                newMap.mapArray[i][j] = tileType.Clone();//поменяла!!
-                this.Growing(i, j, tileType);
+                newMap.mapArray[i][j] = new Tile(terrainType);
+                this.Growing(i, j, terrainType);
                 notWaterTile++;
             }
         }
@@ -56,12 +52,12 @@ namespace Map
             {
                 for (var j = 1; j < mapSize - 1; j++)
                 {
-                    if (newMap.mapArray[i][j].TileIcon != newMap.mapArray[i + 1][j].TileIcon
-                        && newMap.mapArray[i][j].TileIcon != newMap.mapArray[i - 1][j].TileIcon
-                        && newMap.mapArray[i][j].TileIcon != newMap.mapArray[i][j + 1].TileIcon
-                        && newMap.mapArray[i][j].TileIcon != newMap.mapArray[i][j - 1].TileIcon)
+                    if (newMap.mapArray[i][j].Terrain.Color != newMap.mapArray[i + 1][j].Terrain.Color//сделать сравнение по классу
+                        && newMap.mapArray[i][j].Terrain.Color != newMap.mapArray[i - 1][j].Terrain.Color
+                        && newMap.mapArray[i][j].Terrain.Color != newMap.mapArray[i][j + 1].Terrain.Color
+                        && newMap.mapArray[i][j].Terrain.Color != newMap.mapArray[i][j - 1].Terrain.Color)
                     {
-                        newMap.mapArray[i][j] = newMap.mapArray[i + 1][j];
+                        newMap.mapArray[i][j] = new Tile(newMap.mapArray[i + 1][j].Terrain);////нееееее
                     }
                 }
             }
@@ -75,10 +71,10 @@ namespace Map
                 {
                     if (Count(i, j) < 3)
                     {
-                        newMap.mapArray[i - 1][j] = newMap.mapArray[i - 2][j];
-                        newMap.mapArray[i + 1][j] = newMap.mapArray[i + 2][j];
-                        newMap.mapArray[i][j - 1] = newMap.mapArray[i][j - 2];
-                        newMap.mapArray[i][j + 1] = newMap.mapArray[i][j + 2];
+                        newMap.mapArray[i - 1][j] = new Tile(newMap.mapArray[i - 2][j].Terrain);
+                        newMap.mapArray[i + 1][j] = new Tile(newMap.mapArray[i + 2][j].Terrain);
+                        newMap.mapArray[i][j - 1] = new Tile(newMap.mapArray[i][j - 2].Terrain);
+                        newMap.mapArray[i][j + 1] = new Tile(newMap.mapArray[i][j + 2].Terrain);
                     }
                 }
             }
@@ -87,13 +83,13 @@ namespace Map
         private int Count(int i, int j)
         {
             var tmp = 0;
-            if (newMap.mapArray[i][j].TileIcon == newMap.mapArray[i][j - 1].TileIcon)
+            if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i][j - 1].Terrain.Color)
                 tmp++;
-            if (newMap.mapArray[i][j].TileIcon == newMap.mapArray[i][j + 1].TileIcon)
+            if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i][j + 1].Terrain.Color)
                 tmp++;
-            if (newMap.mapArray[i][j].TileIcon == newMap.mapArray[i - 1][j].TileIcon)
+            if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i - 1][j].Terrain.Color)
                 tmp++;
-            if (newMap.mapArray[i][j].TileIcon == newMap.mapArray[i + 1][j].TileIcon)
+            if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i + 1][j].Terrain.Color)
                 tmp++;
             return tmp;
         }

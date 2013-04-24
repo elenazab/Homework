@@ -15,11 +15,13 @@ namespace Map
             {
                 for (var j = 0; j < mapSize; j++)
                 {
-                    mapArray[i][j] = new Water();//??????
+                    mapArray[i][j] = new Tile(new Water());
                 }
             }
         }
-
+/// <summary>
+/// кажется, все, что дальше, можно убрать
+/// </summary>
         public Tile[][] mapArray {get; set;}
 
         public int MapSize

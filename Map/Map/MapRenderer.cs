@@ -8,35 +8,44 @@ namespace Map
         {
             Console.Title = "Map";
             Console.Clear();
+            this.DisplayMenu("OLOLO");
             this.DisplayMap(map);
-            this.DisplayMenu();
         }
 
-        public void F5(int x, int y, Tile movedObject)
-        {
-            Console.SetCursorPosition(x, y);
-            Console.BackgroundColor = movedObject.TileColor;
-            Console.Write(movedObject.TileIcon);
-        }
+        //public void F5(Tile movedObject)
+        //{
+        //    Console.SetCursorPosition(movedObject.CoordinateX, movedObject.CoordinateY);
+        //    Console.BackgroundColor = movedObject.TileColor;
+        //    Console.Write(movedObject.TileIcon);
+        //}
 
         private void DisplayMap(Map map)
         {
-            for (var i = 0; i < map.MapSize; i++)
+            for (var j = 0; j < map.MapSize; j++)
             {
-                for (var j = 0; j < map.MapSize; j++)
+                for (var i = 0; i < map.MapSize; i++)
                 {
                     //Console.ForegroundColor = map.mapArray[i][j].Color;
-                    Console.BackgroundColor = map.mapArray[i][j].TileColor;
-                    Console.Write(map.mapArray[i][j].TileIcon);
+                    Console.BackgroundColor = map.mapArray[i][j].Terrain.Color;
+                    //Console.Write(map.mapArray[i][j].TileIcon);
+                    if (map.mapArray[i][j].listOfObjects.Count == 0)
+                    {
+                        Console.Write(map.mapArray[i][j].Terrain.Icon);
+                    }
+                    else
+                    {
+                        //тут надо как-то узнать, что из объектов печатать
+                        Console.Write(map.mapArray[i][j].listOfObjects[0].Image);
+                    }
                 }
                 Console.WriteLine(' ');
             }
         }
 
-        private void DisplayMenu()
+        private void DisplayMenu(string str)
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Menu \n ");
+            Console.WriteLine(str);
         }
     }
 }

@@ -41,26 +41,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tiles\Character.cs" />
-    <Compile Include="Tiles\Field.cs" />
-    <Compile Include="Tiles\FieldTree.cs" />
-    <Compile Include="Tiles\Forest.cs" />
-    <Compile Include="Tiles\ForestTree.cs" />
+    <Compile Include="Behavoir\Behavior.cs" />
+    <Compile Include="Behavoir\PlayerDecisionMaker.cs" />
+    <Compile Include="Behavoir\RandomDecisionMaker.cs" />
+    <Compile Include="Objects\Elf.cs" />
+    <Compile Include="Objects\MapObject.cs" />
+    <Compile Include="Terrain\Field.cs" />
+    <Compile Include="Objects\FieldTree.cs" />
+    <Compile Include="Terrain\Forest.cs" />
+    <Compile Include="Objects\ForestTree.cs" />
     <Compile Include="GameplayController.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapAutoCreator.cs" />
     <Compile Include="MapCreator.cs" />
-    <Compile Include="MapLoader.cs" />
     <Compile Include="MapRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonRandom.cs" />
-    <Compile Include="Tiles\Swamp.cs" />
-    <Compile Include="Tiles\SwampTree.cs" />
+    <Compile Include="Terrain\Swamp.cs" />
+    <Compile Include="Objects\SwampTree.cs" />
     <Compile Include="Tiles\Tile.cs" />
-    <Compile Include="Tiles\TypesOfForest.cs" />
-    <Compile Include="Tiles\Water.cs" />
-    <Compile Include="Tiles\Woods.cs" />
+    <Compile Include="Terrain\Terrain.cs" />
+    <Compile Include="Terrain\Water.cs" />
+    <Compile Include="Behavoir\Decision.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,30 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 
 
 namespace Map
 {
-    abstract class Tile
+    class Tile
     {
-        protected char tileIcon;
+        public Tile(Terrain terrain)
+        {
+            this.terrain = terrain;
+            listOfObjects = new List<MapObject>();
+        }
 
-        public char TileIcon
+        public Tile CloneTile()
+        {
+            return new Tile(terrain);
+        }
+
+        public List<MapObject> listOfObjects;//убрать
+        private Terrain terrain;
+        public Terrain Terrain
         {
             get
             {
-                return tileIcon;
+                return terrain;
             }
         }
-
-        protected ConsoleColor tileColor;
-
-        public ConsoleColor TileColor
-        {
-            get
-            {
-                return tileColor;
-            }
-        }
-
-        public abstract Tile Clone();
     }
 }
