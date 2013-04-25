@@ -2,7 +2,7 @@
 
 namespace Map
 {
-    class Forest: Terrain
+    class Forest : Terrain
     {
         public Forest()
         {

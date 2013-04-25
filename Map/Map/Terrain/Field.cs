@@ -2,7 +2,7 @@
 
 namespace Map
 {
-    class Field: Terrain
+    class Field : Terrain
     {
         public Field()
         {

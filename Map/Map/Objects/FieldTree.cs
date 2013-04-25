@@ -5,9 +5,9 @@ namespace Map
     class FieldTree: MapObject
     {
         public FieldTree(Behavior behavior)
+            : base(behavior)
         {
             image = 'W';
-            this.behavior = behavior;
         }
     }
 }

@@ -13,6 +13,10 @@ namespace Map
             }
         }
 
+        public MapObject(Behavior behavior)
+        {
+            this.behavior = behavior;
+        }
 
         public int CoordinateX { get; set; }
         public int CoordinateY { get; set; }

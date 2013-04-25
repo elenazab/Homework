@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Map
 {
@@ -26,20 +27,23 @@ namespace Map
                 {
                     if (rnd.Next(0, 15) > 5)// параметр лесистости
                     {
+                        MapObject newObject = null;
                         if (newMap.mapArray[i][j].Terrain is Forest)
                         {
-                            newMap.mapArray[i][j].listOfObjects.Add(new ForestTree(new RandomDecisionMaker()));
-                            allObjectsOnMap.Add(newMap.mapArray[i][j].listOfObjects[newMap.mapArray[i][j].listOfObjects.Count - 1]);//ЖЕСТЬ!!!!!
+                            newObject = new ForestTree(new RandomDecisionMaker());
                         }
                         if (newMap.mapArray[i][j].Terrain is Swamp)
                         {
-                            newMap.mapArray[i][j].listOfObjects.Add(new SwampTree(new RandomDecisionMaker()));
-                            allObjectsOnMap.Add(newMap.mapArray[i][j].listOfObjects[newMap.mapArray[i][j].listOfObjects.Count - 1]);
+                            newObject = new SwampTree(new RandomDecisionMaker());
                         }
                         if (newMap.mapArray[i][j].Terrain is Field)
                         {
-                            newMap.mapArray[i][j].listOfObjects.Add(new FieldTree(new RandomDecisionMaker()));
-                            allObjectsOnMap.Add(newMap.mapArray[i][j].listOfObjects[newMap.mapArray[i][j].listOfObjects.Count - 1]);
+                            newObject = new FieldTree(new RandomDecisionMaker());
+                        }
+                        if (newObject != null)
+                        {
+                            newMap.mapArray[i][j].listOfObjects.Add(newObject);
+                            allObjectsOnMap.Add(newObject);
                         }
                     }
                 }
