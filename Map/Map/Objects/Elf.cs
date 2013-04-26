@@ -4,7 +4,8 @@ namespace Map
 {
     class Elf: MapObject
     {
-        public Elf()
+        public Elf(Behavior behavior)
+            : base(behavior)
         {
             image = 'X';
         }

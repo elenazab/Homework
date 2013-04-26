@@ -4,7 +4,7 @@ namespace Map
 {
     class MapAutoCreator: MapCreator
     {
-        public Map AutoCreator(int mapSize)
+        public Map AutoCreator(int mapSize, GameplayController controller)
         {
             this.mapSize = mapSize;
             newMap = new Map(mapSize);
@@ -17,7 +17,7 @@ namespace Map
             }
             this.RemoveIsolatedTwoTileGroup();
             this.DeleteSingleTile();
-            //this.AddTree();
+            this.AddTree(controller);
             return newMap;
         }
 
@@ -52,12 +52,12 @@ namespace Map
             {
                 for (var j = 1; j < mapSize - 1; j++)
                 {
-                    if (newMap.mapArray[i][j].Terrain.Color != newMap.mapArray[i + 1][j].Terrain.Color//сделать сравнение по классу
-                        && newMap.mapArray[i][j].Terrain.Color != newMap.mapArray[i - 1][j].Terrain.Color
-                        && newMap.mapArray[i][j].Terrain.Color != newMap.mapArray[i][j + 1].Terrain.Color
-                        && newMap.mapArray[i][j].Terrain.Color != newMap.mapArray[i][j - 1].Terrain.Color)
+                    if (newMap.mapArray[i][j].Terrain.GetType() != newMap.mapArray[i + 1][j].Terrain.GetType()
+                        && newMap.mapArray[i][j].Terrain.GetType() != newMap.mapArray[i - 1][j].Terrain.GetType()
+                        && newMap.mapArray[i][j].Terrain.GetType() != newMap.mapArray[i][j + 1].Terrain.GetType()
+                        && newMap.mapArray[i][j].Terrain.GetType() != newMap.mapArray[i][j - 1].Terrain.GetType())
                     {
-                        newMap.mapArray[i][j] = new Tile(newMap.mapArray[i + 1][j].Terrain);////нееееее
+                        newMap.mapArray[i][j] = newMap.mapArray[i + 1][j].CloneTile();
                     }
                 }
             }
@@ -71,10 +71,10 @@ namespace Map
                 {
                     if (Count(i, j) < 3)
                     {
-                        newMap.mapArray[i - 1][j] = new Tile(newMap.mapArray[i - 2][j].Terrain);
-                        newMap.mapArray[i + 1][j] = new Tile(newMap.mapArray[i + 2][j].Terrain);
-                        newMap.mapArray[i][j - 1] = new Tile(newMap.mapArray[i][j - 2].Terrain);
-                        newMap.mapArray[i][j + 1] = new Tile(newMap.mapArray[i][j + 2].Terrain);
+                        newMap.mapArray[i - 1][j] = newMap.mapArray[i - 2][j].CloneTile();
+                        newMap.mapArray[i + 1][j] = newMap.mapArray[i + 2][j].CloneTile();
+                        newMap.mapArray[i][j - 1] = newMap.mapArray[i][j - 2].CloneTile();
+                        newMap.mapArray[i][j + 1] = newMap.mapArray[i][j + 2].CloneTile();
                     }
                 }
             }
@@ -83,7 +83,7 @@ namespace Map
         private int Count(int i, int j)
         {
             var tmp = 0;
-            if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i][j - 1].Terrain.Color)
+            if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i][j - 1].Terrain.Color)  // Сравнение по типу.
                 tmp++;
             if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i][j + 1].Terrain.Color)
                 tmp++;
@@ -92,6 +92,37 @@ namespace Map
             if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i + 1][j].Terrain.Color)
                 tmp++;
             return tmp;
+        }
+
+        private void AddTree (GameplayController controller)
+        {
+            for (int i = 0; i < mapSize; i++)
+            {
+                for (int j = 0; j < mapSize; j++)
+                {
+                    if (rnd.Next(0, 15) > 5)// параметр лесистости
+                    {
+                        MapObject newObject = null;
+                        if (newMap.mapArray[i][j].Terrain is Forest)
+                        {
+                            newObject = new ForestTree(new RandomDecisionMaker());
+                        }
+                        if (newMap.mapArray[i][j].Terrain is Swamp)
+                        {
+                            newObject = new SwampTree(new RandomDecisionMaker());
+                        }
+                        if (newMap.mapArray[i][j].Terrain is Field)
+                        {
+                            newObject = new FieldTree(new RandomDecisionMaker());
+                        }
+                        if (newObject != null)
+                        {
+                            newMap.mapArray[i][j].listOfObjects.Add(newObject);
+                            controller.AddObject(newObject);
+                        }
+                    }
+                }
+            }
         }
 
         private int mapSize;
