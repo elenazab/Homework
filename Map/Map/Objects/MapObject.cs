@@ -13,6 +13,11 @@ namespace Map
             }
         }
 
+        public Decision MakeMove(Map map)
+        {
+            return behavior.Think();
+        }
+
         public MapObject(Behavior behavior)
         {
             this.behavior = behavior;

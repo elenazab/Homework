@@ -83,13 +83,13 @@ namespace Map
         private int Count(int i, int j)
         {
             var tmp = 0;
-            if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i][j - 1].Terrain.Color)  // Сравнение по типу.
+            if (newMap.mapArray[i][j].Terrain.GetType() == newMap.mapArray[i][j - 1].Terrain.GetType())
                 tmp++;
-            if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i][j + 1].Terrain.Color)
+            if (newMap.mapArray[i][j].Terrain.GetType() == newMap.mapArray[i][j + 1].Terrain.GetType())
                 tmp++;
-            if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i - 1][j].Terrain.Color)
+            if (newMap.mapArray[i][j].Terrain.GetType() == newMap.mapArray[i - 1][j].Terrain.GetType())
                 tmp++;
-            if (newMap.mapArray[i][j].Terrain.Color == newMap.mapArray[i + 1][j].Terrain.Color)
+            if (newMap.mapArray[i][j].Terrain.GetType() == newMap.mapArray[i + 1][j].Terrain.GetType())
                 tmp++;
             return tmp;
         }
