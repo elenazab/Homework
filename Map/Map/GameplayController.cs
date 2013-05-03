@@ -13,7 +13,24 @@ namespace Map
             var CreateMap = new MapAutoCreator();
             var testMap = CreateMap.AutoCreator(mapSize, this);
             var renderer = new MapRenderer(testMap, 20, 20);
+            this.AddPlayer(testMap);
             this.Run(testMap, renderer);
+        }
+
+        private void AddPlayer(Map map)
+        {
+            var me = new StonedCat(new PlayerDecisionMaker());
+            allObjectsOnMap.Add(me);
+            var i = rnd.Next(0, mapSize);
+            var j = rnd.Next(0, mapSize);
+            while (map.mapArray[i][j].Terrain is Water)//и еще что-нибудь
+            {
+                i = rnd.Next(0, mapSize);
+                j = rnd.Next(0, mapSize);
+            }
+            map.mapArray[i][j].listOfObjects.Add(me);
+            me.CoordinateX = i;
+            me.CoordinateY = j;
         }
 
         public void AddObject(MapObject newObject)
@@ -28,8 +45,13 @@ namespace Map
                 foreach(MapObject obj in allObjectsOnMap)
                 {
                     //renderer.DisplayObject(obj);
-                    Console.ReadKey();
+                    //Console.ReadKey();
                     var objDecision = obj.MakeMove(testMap);
+                    if (obj is StonedCat)
+                    {
+                        renderer.DisplayMenu(testMap, obj.objectSound);
+                        renderer.DisplayObject(obj);
+                    }
                     if (objDecision == (Decision)(1) && obj.CoordinateY > 0)
                     {
                         testMap.mapArray[obj.CoordinateX][obj.CoordinateY - 1].listOfObjects.Add(obj);

@@ -8,7 +8,7 @@ namespace Map
         {
             Console.Title = "Map";
             Console.Clear();
-            this.DisplayMenu("OLOLO");
+            //this.DisplayMenu("OLOLO");
             this.DisplayMap(map);
         }
 
@@ -46,8 +46,9 @@ namespace Map
             }
         }
 
-        private void DisplayMenu(string str)
+        public void DisplayMenu(Map map, string str)
         {
+            Console.SetCursorPosition(0, map.MapSize);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(str);
         }

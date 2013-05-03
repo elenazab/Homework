@@ -119,11 +119,19 @@ namespace Map
                         {
                             newMap.mapArray[i][j].listOfObjects.Add(newObject);
                             controller.AddObject(newObject);
+                            newObject.CoordinateX = i;
+                            newObject.CoordinateY = j;
                         }
                     }
                 }
             }
         }
+
+        //public void AddObjectOnTile(MapObject obj, int i, int j)
+        //{
+        //    newMap.mapArray[i][j].listOfObjects.Add(obj);
+        //    controller.AddObject(obj);
+        //}
 
         private int mapSize;
         private int notWaterTile;

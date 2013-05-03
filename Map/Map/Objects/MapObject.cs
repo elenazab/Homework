@@ -26,5 +26,6 @@ namespace Map
         public int CoordinateX { get; set; }
         public int CoordinateY { get; set; }
         protected Behavior behavior;
+        public string objectSound;//уберу
     }
 }

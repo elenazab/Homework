@@ -7,6 +7,7 @@ namespace Map
             : base(behavior)
         {
             image = 'Y';
+            objectSound = "yyyy";
         }
     }
 }

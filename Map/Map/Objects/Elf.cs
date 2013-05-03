@@ -2,12 +2,13 @@
 
 namespace Map
 {
-    class Elf: MapObject
+    class StonedCat: MapObject
     {
-        public Elf(Behavior behavior)
+        public StonedCat(Behavior behavior)
             : base(behavior)
         {
             image = 'X';
+            objectSound = "MEOWMEOW";
         }
     }
 }
