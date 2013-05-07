@@ -8,7 +8,6 @@ namespace Map
         {
             Console.Title = "Map";
             Console.Clear();
-            //this.DisplayMenu("OLOLO");
             this.DisplayMap(map);
         }
 
@@ -17,6 +16,7 @@ namespace Map
             Console.SetCursorPosition(movedObject.CoordinateX, movedObject.CoordinateY);
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.Write(movedObject.Image);
+            Console.SetCursorPosition(movedObject.CoordinateX, movedObject.CoordinateY);
         }
 
         private void DisplayMap(Map map)
@@ -41,6 +41,7 @@ namespace Map
             }
             else
             {
+                //map.mapArray[i][j].listOfObjects.Find(x => x is StonedCat);
                 //тут надо как-то узнать, что из объектов печатать
                 Console.Write(map.mapArray[i][j].listOfObjects[0].Image);
             }

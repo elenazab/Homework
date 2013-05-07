@@ -71,7 +71,6 @@
     <Compile Include="GameplayController.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapAutoCreator.cs" />
-    <Compile Include="MapCreator.cs" />
     <Compile Include="MapRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

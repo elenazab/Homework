@@ -2,7 +2,7 @@
 
 namespace Map
 {
-    class MapAutoCreator: MapCreator
+    class MapCreator
     {
         public Map AutoCreator(int mapSize, GameplayController controller)
         {
@@ -52,15 +52,20 @@ namespace Map
             {
                 for (var j = 1; j < mapSize - 1; j++)
                 {
-                    if (newMap.mapArray[i][j].Terrain.GetType() != newMap.mapArray[i + 1][j].Terrain.GetType()
-                        && newMap.mapArray[i][j].Terrain.GetType() != newMap.mapArray[i - 1][j].Terrain.GetType()
-                        && newMap.mapArray[i][j].Terrain.GetType() != newMap.mapArray[i][j + 1].Terrain.GetType()
-                        && newMap.mapArray[i][j].Terrain.GetType() != newMap.mapArray[i][j - 1].Terrain.GetType())
+                    if (!this.EqTiles(i, j, i + 1, j)
+                        && !this.EqTiles(i, j, i - 1, j)
+                        && !this.EqTiles(i, j, i, j + 1)
+                        && !this.EqTiles(i, j, i, j - 1))
                     {
                         newMap.mapArray[i][j] = newMap.mapArray[i + 1][j].CloneTile();
                     }
                 }
             }
+        }
+
+        private bool EqTiles(int i1, int j1, int i2, int j2)
+        {
+             return newMap.mapArray[i1][j1].Terrain.GetType() == newMap.mapArray[i2][j2].Terrain.GetType();
         }
 
         private void RemoveIsolatedTwoTileGroup()
@@ -83,18 +88,18 @@ namespace Map
         private int Count(int i, int j)
         {
             var tmp = 0;
-            if (newMap.mapArray[i][j].Terrain.GetType() == newMap.mapArray[i][j - 1].Terrain.GetType())
+            if (this.EqTiles(i, j, i, j - 1))
                 tmp++;
-            if (newMap.mapArray[i][j].Terrain.GetType() == newMap.mapArray[i][j + 1].Terrain.GetType())
+            if (this.EqTiles(i, j, i, j + 1))
                 tmp++;
-            if (newMap.mapArray[i][j].Terrain.GetType() == newMap.mapArray[i - 1][j].Terrain.GetType())
+            if (this.EqTiles(i, j, i - 1, j))
                 tmp++;
-            if (newMap.mapArray[i][j].Terrain.GetType() == newMap.mapArray[i + 1][j].Terrain.GetType())
+            if (this.EqTiles(i, j, i + 1, j))
                 tmp++;
             return tmp;
         }
 
-        private void AddTree (GameplayController controller)
+        private void AddTree(GameplayController controller)
         {
             for (int i = 0; i < mapSize; i++)
             {
@@ -126,12 +131,6 @@ namespace Map
                 }
             }
         }
-
-        //public void AddObjectOnTile(MapObject obj, int i, int j)
-        //{
-        //    newMap.mapArray[i][j].listOfObjects.Add(obj);
-        //    controller.AddObject(obj);
-        //}
 
         private int mapSize;
         private int notWaterTile;

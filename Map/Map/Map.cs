@@ -19,10 +19,11 @@ namespace Map
                 }
             }
         }
-/// <summary>
-/// кажется, все, что дальше, можно убрать
-/// </summary>
-        public Tile[][] mapArray {get; set;}
+
+        /// <summary>
+        /// кажется, все, что дальше, можно убрать
+        /// </summary>
+        public Tile[][] mapArray { get; set; }
 
         public int MapSize
         {

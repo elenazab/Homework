@@ -7,6 +7,7 @@ namespace Map
         static void Main(string[] args)
         {
             var test = new GameplayController();
+            test.StartGame();
             Console.ReadKey();
         }
     }
