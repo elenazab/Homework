@@ -13,9 +13,25 @@ namespace Map
             }
         }
 
-        public Decision MakeMove(Map map)
+        public void MakeMove(Map map)
         {
-            return behavior.Think(map);
+            var objDecision = behavior.Think(map);
+            if (objDecision == Decision.WishUp && this.CoordinateY > 0)
+            {
+                this.NewCoordinate(map, this.CoordinateX, this.CoordinateY - 1);
+            }
+            if (objDecision == Decision.WishRight && this.CoordinateX < map.mapArray.Length - 1)
+            {
+                this.NewCoordinate(map, this.CoordinateX + 1, this.CoordinateY);
+            }
+            if (objDecision == Decision.WishDown && this.CoordinateY < map.mapArray.Length - 1)
+            {
+                this.NewCoordinate(map, this.CoordinateX, this.CoordinateY + 1);
+            }
+            if (objDecision == Decision.WishLeft && this.CoordinateX > 0)
+            {
+                this.NewCoordinate(map, this.CoordinateX - 1, this.CoordinateY);
+            }
         }
 
         public MapObject()
@@ -27,8 +43,10 @@ namespace Map
             this.behavior = behavior;
         }
 
-        public void NewCoordinate(int x, int y)
+        public void NewCoordinate(Map map, int x, int y)
         {
+            map.mapArray[this.CoordinateX][this.CoordinateY - 1].listOfObjects.Add(this);
+            map.mapArray[this.CoordinateX][this.CoordinateY].listOfObjects.Remove(this);
             this.CoordinateX = x;
             this.CoordinateY = y;
         }

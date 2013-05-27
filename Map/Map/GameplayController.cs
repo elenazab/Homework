@@ -49,31 +49,7 @@ namespace Map
             {
                 foreach(MapObject obj in allObjectsOnMap)
                 {
-                    var objDecision = obj.MakeMove(map);
-                    if (objDecision == Decision.WishUp && obj.CoordinateY > 0)
-                    {
-                        map.mapArray[obj.CoordinateX][obj.CoordinateY - 1].listOfObjects.Add(obj);
-                        map.mapArray[obj.CoordinateX][obj.CoordinateY].listOfObjects.Remove(obj);
-                        obj.CoordinateY -= 1;
-                    }
-                    if (objDecision == Decision.WishRight && obj.CoordinateX < mapSize - 1)
-                    {
-                        map.mapArray[obj.CoordinateX + 1][obj.CoordinateY].listOfObjects.Add(obj);
-                        map.mapArray[obj.CoordinateX][obj.CoordinateY].listOfObjects.Remove(obj);
-                        obj.CoordinateX += 1;
-                    }
-                    if (objDecision == Decision.WishDown && obj.CoordinateY < mapSize - 1)
-                    {
-                        map.mapArray[obj.CoordinateX][obj.CoordinateY + 1].listOfObjects.Add(obj);
-                        map.mapArray[obj.CoordinateX][obj.CoordinateY].listOfObjects.Remove(obj);
-                        obj.CoordinateY += 1;
-                    }
-                    if (objDecision == Decision.WishLeft && obj.CoordinateX > 0)
-                    {
-                        map.mapArray[obj.CoordinateX - 1][obj.CoordinateY].listOfObjects.Add(obj);
-                        map.mapArray[obj.CoordinateX][obj.CoordinateY].listOfObjects.Remove(obj);
-                        obj.CoordinateX -= 1;
-                    }
+                    obj.MakeMove(map);
                 }
             }
         }
