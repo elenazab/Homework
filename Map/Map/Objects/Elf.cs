@@ -4,8 +4,7 @@ namespace Map
 {
     class StonedCat: MapObject
     {
-        public StonedCat(Behavior behavior)
-            : base(behavior)
+        public StonedCat()
         {
             image = 'X';
             objectSound = "MEOWMEOW";

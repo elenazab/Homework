@@ -15,12 +15,22 @@ namespace Map
 
         public Decision MakeMove(Map map)
         {
-            return behavior.Think();
+            return behavior.Think(map);
         }
 
-        public MapObject(Behavior behavior)
+        public MapObject()
+        {
+        }
+
+        public void SetBehavior(Behavior behavior)
         {
             this.behavior = behavior;
+        }
+
+        public void NewCoordinate(int x, int y)
+        {
+            this.CoordinateX = x;
+            this.CoordinateY = y;
         }
 
         public int CoordinateX { get; set; }

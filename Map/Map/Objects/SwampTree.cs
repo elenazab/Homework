@@ -3,8 +3,7 @@ namespace Map
 {
     class SwampTree: MapObject
     {
-        public SwampTree(Behavior behavior)
-            : base(behavior)
+        public SwampTree()
         {
             image = 'U';
             objectSound = "TTrTrTrT";

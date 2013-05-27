@@ -4,8 +4,7 @@ namespace Map
 {
     class FieldTree: MapObject
     {
-        public FieldTree(Behavior behavior)
-            : base(behavior)
+        public FieldTree()
         {
             image = 'W';
             objectSound = "hhhhh";

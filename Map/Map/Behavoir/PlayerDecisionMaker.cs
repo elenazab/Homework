@@ -5,8 +5,19 @@ namespace Map
 {
     class PlayerDecisionMaker:Behavior
     {
-        public override Decision Think()
+        public PlayerDecisionMaker(MapObject player)
         {
+            this.player = player;
+        }
+
+        public override Decision Think(Map map)
+        {
+            if (renderer == null)
+            {
+                renderer = new MapRenderer(map, player.CoordinateX, player.CoordinateY);
+            }
+            renderer.DisplayMap(map);
+            renderer.DisplayObject(player);
             var key = Console.ReadKey();
             switch (key.Key)
             {
@@ -21,5 +32,8 @@ namespace Map
             }
             return Decision.NoWish;
         }
+
+        private MapRenderer renderer;
+        private MapObject player;
     }
 }

@@ -3,6 +3,6 @@ namespace Map
 {
     abstract class Behavior
     {
-        abstract public Decision Think();
+        abstract public Decision Think(Map map);
     }
 }

@@ -15,14 +15,16 @@ namespace Map
 
         public void StartGame()
         {
-            var renderer = new MapRenderer(map, 20, 20);
+            //var renderer = new MapRenderer(map, 20, 20);
             this.AddPlayer();
-            this.Run(renderer);
+            this.AddPlayer();
+            this.Run();
         }
 
         private void AddPlayer()
         {
-            var me = new StonedCat(new PlayerDecisionMaker());
+            var me = new StonedCat();
+            me.SetBehavior(new PlayerDecisionMaker(me));//это и есть обдолбанность
             this.AddObject(me);
             var i = rnd.Next(0, mapSize);
             var j = rnd.Next(0, mapSize);
@@ -41,53 +43,36 @@ namespace Map
             allObjectsOnMap.Add(newObject);
         }
 
-        private void Run(MapRenderer renderer)
+        private void Run()
         {
             while (true)
             {
                 foreach(MapObject obj in allObjectsOnMap)
                 {
-                    if (obj is StonedCat)
-                    {
-                        renderer.DisplayObject(obj);
-                    }
                     var objDecision = obj.MakeMove(map);
-                    if (obj is StonedCat)
-                    {
-                        renderer.DisplayMenu(map, obj.objectSound);
-                        renderer.DisplayObject(obj);
-                    }
                     if (objDecision == Decision.WishUp && obj.CoordinateY > 0)
                     {
                         map.mapArray[obj.CoordinateX][obj.CoordinateY - 1].listOfObjects.Add(obj);
                         map.mapArray[obj.CoordinateX][obj.CoordinateY].listOfObjects.Remove(obj);
                         obj.CoordinateY -= 1;
-                        renderer.DisplayTile(map, obj.CoordinateX, obj.CoordinateY + 1);
-                        renderer.DisplayTile(map, obj.CoordinateX, obj.CoordinateY);
                     }
                     if (objDecision == Decision.WishRight && obj.CoordinateX < mapSize - 1)
                     {
                         map.mapArray[obj.CoordinateX + 1][obj.CoordinateY].listOfObjects.Add(obj);
                         map.mapArray[obj.CoordinateX][obj.CoordinateY].listOfObjects.Remove(obj);
                         obj.CoordinateX += 1;
-                        renderer.DisplayTile(map, obj.CoordinateX - 1, obj.CoordinateY);
-                        renderer.DisplayTile(map, obj.CoordinateX, obj.CoordinateY);
                     }
                     if (objDecision == Decision.WishDown && obj.CoordinateY < mapSize - 1)
                     {
                         map.mapArray[obj.CoordinateX][obj.CoordinateY + 1].listOfObjects.Add(obj);
                         map.mapArray[obj.CoordinateX][obj.CoordinateY].listOfObjects.Remove(obj);
                         obj.CoordinateY += 1;
-                        renderer.DisplayTile(map, obj.CoordinateX, obj.CoordinateY - 1);
-                        renderer.DisplayTile(map, obj.CoordinateX, obj.CoordinateY);
                     }
                     if (objDecision == Decision.WishLeft && obj.CoordinateX > 0)
                     {
                         map.mapArray[obj.CoordinateX - 1][obj.CoordinateY].listOfObjects.Add(obj);
                         map.mapArray[obj.CoordinateX][obj.CoordinateY].listOfObjects.Remove(obj);
                         obj.CoordinateX -= 1;
-                        renderer.DisplayTile(map, obj.CoordinateX+1, obj.CoordinateY);
-                        renderer.DisplayTile(map, obj.CoordinateX, obj.CoordinateY);
                     }
                 }
             }

@@ -4,7 +4,7 @@ namespace Map
 {
     class RandomDecisionMaker:Behavior
     {
-        public override Decision Think()
+        public override Decision Think(Map map)
         {
             return (Decision)(rnd.Next(5));
         }

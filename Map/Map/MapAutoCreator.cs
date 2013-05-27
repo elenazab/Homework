@@ -110,18 +110,19 @@ namespace Map
                         MapObject newObject = null;
                         if (newMap.mapArray[i][j].Terrain is Forest)
                         {
-                            newObject = new ForestTree(new RandomDecisionMaker());
+                            newObject = new ForestTree();
                         }
                         if (newMap.mapArray[i][j].Terrain is Swamp)
                         {
-                            newObject = new SwampTree(new RandomDecisionMaker());
+                            newObject = new SwampTree();
                         }
                         if (newMap.mapArray[i][j].Terrain is Field)
                         {
-                            newObject = new FieldTree(new RandomDecisionMaker());
+                            newObject = new FieldTree();
                         }
                         if (newObject != null)
                         {
+                            newObject.SetBehavior(new RandomDecisionMaker());
                             newMap.mapArray[i][j].listOfObjects.Add(newObject);
                             controller.AddObject(newObject);
                             newObject.CoordinateX = i;

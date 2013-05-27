@@ -19,7 +19,7 @@ namespace Map
             Console.SetCursorPosition(movedObject.CoordinateX, movedObject.CoordinateY);
         }
 
-        private void DisplayMap(Map map)
+        public void DisplayMap(Map map)
         {
             for (var j = 0; j < map.MapSize; j++)
             {

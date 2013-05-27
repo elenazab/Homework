@@ -3,8 +3,7 @@ namespace Map
 {
     class ForestTree: MapObject
     {
-        public ForestTree(Behavior behavior)
-            : base(behavior)
+        public ForestTree()
         {
             image = 'Y';
             objectSound = "yyyy";

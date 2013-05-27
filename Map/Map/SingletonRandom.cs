@@ -2,7 +2,7 @@
 
 namespace Map
 {
-    class SingletonRandom
+    static class SingletonRandom
     {
         public static Random Instance()
         {
