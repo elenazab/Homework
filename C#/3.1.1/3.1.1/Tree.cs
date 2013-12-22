@@ -4,10 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _3._1._1
+namespace hw311
 {
-    public class Tree
+    public class Tree<T>: IEnumerable<T>
     {
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return new Iterator<T>(this);
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return new Iterator<T>(this);
+        }
+
+
         public class TreeElement
         {
             public TreeElement()
@@ -199,6 +211,6 @@ namespace _3._1._1
             }
         }
 
-        private TreeElement head;
+        public TreeElement head;
     }
 }
