@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace hw311
 {
-    public class Tree<T>: IEnumerable<T>
+    public class Tree//<T>: IEnumerable<T>
     {
-
+/*
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return new Iterator<T>(this);
@@ -18,7 +18,7 @@ namespace hw311
         {
             return new Iterator<T>(this);
         }
-
+*/
 
         public class TreeElement
         {
@@ -135,7 +135,10 @@ namespace hw311
                 return;
             if (this.head.GetValue() == value && this.head.GetRight() == null
                 && this.head.GetLeft() == null)
+            {
                 this.head = null;
+                return;
+            }
             TreeElement counter = this.head;
             TreeElement previousCounter = this.head;
             while (counter.GetValue() != value)

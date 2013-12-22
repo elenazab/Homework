@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace hw311
-{
+{/*
     public class Iterator<T>: IEnumerator<T>
     {
         public Iterator(Tree<T> collection)
@@ -59,4 +59,5 @@ namespace hw311
         private Tree<T> mCollection;
         private Tree<T>.TreeElement curTreeElement;
     }
-}
+*/}
+    
