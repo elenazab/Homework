@@ -6,10 +6,7 @@ namespace hw1t2
     {
         public override bool SuccessfulVirusAttack()
         {
-            var rnd = new Random();
-            if (rnd.Next(0, 100) > 65)
-                return true;
-            return false;
+            return (rnd.Next(0, 100) > 65);
         }
     }
 }
