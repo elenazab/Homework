@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace hw1t2
 {
     class Linux: OS

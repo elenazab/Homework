@@ -3,36 +3,39 @@ using System.Collections.Generic;
 
 namespace hw1t2
 {
-    class Network
+    public class Network
     {
 
-        public Network(int n, int[][] nn, Random rnd)
+        public Network(int n, int[,] nn, Random rnd)
         {
             this.Initialisation(n, nn, rnd);
         }
 
-        private void Initialisation(int n, int[][] nn, Random rnd)
+        private void Initialisation(int n, int[,] nn, Random rnd)
         {
             neighbours = nn;
             this.n = n;
             myNetwork = new OS[n];
-            for (int i = 0; i < n; i++)
-            {
-                if (rnd.Next(0, 2) < 1)
+                for (int i = 0; i < n; i++)
                 {
-                    myNetwork[i] = new Linux();
+                    if (rnd.Next(0, 2) < 1)
+                    {
+                        myNetwork[i] = new Linux();
+                    }
+                    else
+                    {
+                        myNetwork[i] = new Windows();
+                    }
+                    myNetwork[i].rnd = new Random();
+                    myNetwork[i].rnd = rnd;
+                    myNetwork[i].SetVirus();
                 }
-                else
-                {
-                    Windows tmpOS2 = new Windows();
-                }
-                myNetwork[i].SetVirus();
-                myNetwork[i].rnd = rnd;
-            }
         }
 
 
-        //а тут обход всех компов, каждый   ход - проверка каждого и попытка закинуь вирус соседям
+/// <summary>
+/// обход компов с попыткой передать вирус соседям
+/// </summary>
         public void Step()
         {
             List<int> tmpList = new List<int>();
@@ -42,8 +45,7 @@ namespace hw1t2
                 {
                     for (int j = 0; j < n; j++)
                     {
-                        if (neighbours[i][j] == 1)
-                            //myNetwork[j].SetVirus();
+                        if (neighbours[i,j] == 1)
                             tmpList.Add(j);
                     }
                 }
@@ -53,8 +55,14 @@ namespace hw1t2
                 myNetwork[i].SetVirus();
             }
         }
+
+        public bool getVirus(int i)
+        {
+            return myNetwork[i].Virus;
+        }
+
         private OS[] myNetwork;
-        private int[][] neighbours;
-        private int n;//число компов. может и не нужно?
+        private int[,] neighbours;
+        private int n;
     }
 }
