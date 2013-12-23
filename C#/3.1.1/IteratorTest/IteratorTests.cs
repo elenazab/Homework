@@ -8,8 +8,8 @@ namespace IteratorTest
     public class IteratorTests
     {
         [TestMethod]
-        public void TestMethod()
-        {/*
+        public void TestIterator()
+        {
             Tree testTree = new Tree();
             testTree.Add(1);
             testTree.Add(2);
@@ -20,6 +20,6 @@ namespace IteratorTest
                 Assert.IsTrue(tmp == i);
                 tmp++;
             }
-        */}
+        }
     }
 }

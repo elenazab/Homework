@@ -1,24 +1,65 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace hw311
 {
-    public class Tree//<T>: IEnumerable<T>
+    public class Tree: IEnumerable
     {
-/*
+
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return new Iterator<T>(this);
+            return new Iterator(this);
         }
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        public class Iterator : IEnumerator
         {
-            return new Iterator<T>(this);
+            public Iterator(Tree collection)
+            {
+                this.list = new List<int>();
+                InitList(collection.head);
+                listEnumerator = list.GetEnumerator();
+            }
+
+            private void InitList(TreeElement tree)
+            {
+                if (tree.GetLeft() != null)
+                    InitList(tree.GetLeft());
+                list.Add(tree.GetValue());
+                if (tree.GetRight() != null)
+                    InitList(tree.GetRight());
+            }
+
+            public bool MoveNext()
+            {
+                return listEnumerator.MoveNext();
+
+            }
+
+            public int Current
+            {
+                get
+                {
+                    return listEnumerator.Current;
+                }
+            }
+
+            public void Reset()
+            {
+                listEnumerator.Reset();
+            }
+
+            object System.Collections.IEnumerator.Current
+            {
+                get
+                {
+                    return listEnumerator.Current;
+                }
+            }
+
+            private List<int> list;
+            IEnumerator<int> listEnumerator;
         }
-*/
 
         public class TreeElement
         {
@@ -154,10 +195,11 @@ namespace hw311
                     {
                         previousCounter = previousCounter.GetRight();
                     }
+                }
                     else
                     {
                         counter = counter.GetLeft();
-                        if (previousCounter.GetLeft().GetValue() != value)
+                        if (previousCounter.GetRight().GetValue() != value)
                         {
                             previousCounter = previousCounter.GetLeft();
                         }
@@ -173,6 +215,7 @@ namespace hw311
                     {
                         previousCounter.SetRight(null);
                     }
+                    counter = null;
                     return;
                 }
                 if (counter.GetLeft() == null && counter.GetRight() != null)
@@ -212,8 +255,7 @@ namespace hw311
                     return;
                 }
             }
-        }
 
-        public TreeElement head;
+        private TreeElement head;
     }
 }
