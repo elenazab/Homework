@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 namespace hw311
 {
-    public class Tree: IEnumerable
+    /// <summary>
+    /// дерево
+    /// </summary>
+    public class Tree : IEnumerable
     {
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -12,8 +15,15 @@ namespace hw311
             return new Iterator(this);
         }
 
+        /// <summary>
+        /// итератор
+        /// </summary>
         public class Iterator : IEnumerator
         {
+            /// <summary>
+            /// консруктор итератора
+            /// </summary>
+            /// <param name="collection"></param>
             public Iterator(Tree collection)
             {
                 this.list = new List<int>();
@@ -30,12 +40,19 @@ namespace hw311
                     InitList(tree.GetRight());
             }
 
+            /// <summary>
+            /// следующий элемент
+            /// </summary>
+            /// <returns></returns>
             public bool MoveNext()
             {
                 return listEnumerator.MoveNext();
 
             }
 
+            /// <summary>
+            /// текущий элемент
+            /// </summary>
             public int Current
             {
                 get
@@ -44,6 +61,9 @@ namespace hw311
                 }
             }
 
+            /// <summary>
+            /// перезагрузка итератора
+            /// </summary>
             public void Reset()
             {
                 listEnumerator.Reset();
@@ -61,44 +81,79 @@ namespace hw311
             IEnumerator<int> listEnumerator;
         }
 
+        /// <summary>
+        /// элемент дерева
+        /// </summary>
         public class TreeElement
         {
+
+            /// <summary>
+            /// конструктор элемента дерева
+            /// </summary>
             public TreeElement()
             {
             }
 
-            public TreeElement (int v)
+            /// <summary>
+            /// конструктор элемента дерева с параметрами
+            /// </summary>
+            /// <param name="v"></param>
+            public TreeElement(int v)
             {
                 right = null;
                 left = null;
                 value = v;
             }
 
+            /// <summary>
+            /// указаель на левое поддерево
+            /// </summary>
+            /// <returns></returns>
             public TreeElement GetLeft()
             {
                 return left;
             }
 
+            /// <summary>
+            /// указаель на правое поддерево
+            /// </summary>
+            /// <returns></returns>
             public TreeElement GetRight()
             {
                 return right;
             }
 
+            /// <summary>
+            /// присвоение указателя на левое поддерево
+            /// </summary>
+            /// <param name="next"></param>
             public void SetLeft(TreeElement next)
             {
                 left = next;
             }
 
+            /// <summary>
+            /// присвоение указателя на правое поддерево
+            /// </summary>
+            /// <param name="next"></param>
             public void SetRight(TreeElement next)
             {
                 right = next;
             }
 
+            /// <summary>
+            /// числовое значение элемента
+            /// </summary>
+            /// <returns></returns>
             public int GetValue()
             {
                 return value;
             }
 
+            /// <summary>
+            /// присваивание числового значения элементу
+            /// </summary>
+            /// <param name="value"></param>
             public void SetValue(int value)
             {
                 this.value = value;
@@ -109,11 +164,17 @@ namespace hw311
             private TreeElement right;
         }
 
+        /// <summary>
+        /// конструктор дерева
+        /// </summary>
         public Tree()
         {
         }
 
-
+        /// <summary>
+        /// добавление элемента в дерево
+        /// </summary>
+        /// <param name="value"></param>
         public void Add(int value)
         {
             if (head == null)
@@ -155,6 +216,11 @@ namespace hw311
             }
         }
 
+        /// <summary>
+        /// проверка элемента на принадлежность дереву
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool IsExists(int value)
         {
             TreeElement tmpHead = this.head;
@@ -170,6 +236,10 @@ namespace hw311
             return false;
         }
 
+        /// <summary>
+        /// удаление элемента дерева
+        /// </summary>
+        /// <param name="value"></param>
         public void Delete(int value)
         {
             if (this.IsExists(value) == false)
@@ -196,65 +266,65 @@ namespace hw311
                         previousCounter = previousCounter.GetRight();
                     }
                 }
-                    else
-                    {
-                        counter = counter.GetLeft();
-                        if (previousCounter.GetRight().GetValue() != value)
-                        {
-                            previousCounter = previousCounter.GetLeft();
-                        }
-                    }
-                }
-                if (counter.GetLeft() == null && counter.GetRight() == null)
+                else
                 {
-                    if (previousCounter.GetLeft() == counter)
+                    counter = counter.GetLeft();
+                    if (previousCounter.GetRight().GetValue() != value)
                     {
-                        previousCounter.SetLeft(null);
+                        previousCounter = previousCounter.GetLeft();
                     }
-                    else
-                    {
-                        previousCounter.SetRight(null);
-                    }
-                    counter = null;
-                    return;
-                }
-                if (counter.GetLeft() == null && counter.GetRight() != null)
-                {
-                    if (previousCounter.GetLeft() == counter)
-                    {
-                        previousCounter.SetLeft(counter.GetRight());
-                    }
-                    else
-                    {
-                        previousCounter.SetRight(counter.GetRight());
-                    }
-                    return;
-                }
-                if (counter.GetLeft() != null && counter.GetRight() == null)
-                {
-                    if (previousCounter.GetLeft() == counter)
-                    {
-                        previousCounter.SetLeft(counter.GetLeft());
-                    }
-                    else
-                    {
-                        previousCounter.SetRight(counter.GetLeft());
-                    }
-                    return;
-                }
-                if (counter.GetLeft() != null && counter.GetRight() != null)
-                {
-                    TreeElement searchCounter = counter.GetRight();
-                    while (searchCounter.GetLeft() != null)
-                    {
-                        searchCounter = searchCounter.GetLeft();
-                    }
-                    int tmp = searchCounter.GetValue();
-                    Delete(searchCounter.GetValue());
-                    counter.SetValue(tmp);
-                    return;
                 }
             }
+            if (counter.GetLeft() == null && counter.GetRight() == null)
+            {
+                if (previousCounter.GetLeft() == counter)
+                {
+                    previousCounter.SetLeft(null);
+                }
+                else
+                {
+                    previousCounter.SetRight(null);
+                }
+                counter = null;
+                return;
+            }
+            if (counter.GetLeft() == null && counter.GetRight() != null)
+            {
+                if (previousCounter.GetLeft() == counter)
+                {
+                    previousCounter.SetLeft(counter.GetRight());
+                }
+                else
+                {
+                    previousCounter.SetRight(counter.GetRight());
+                }
+                return;
+            }
+            if (counter.GetLeft() != null && counter.GetRight() == null)
+            {
+                if (previousCounter.GetLeft() == counter)
+                {
+                    previousCounter.SetLeft(counter.GetLeft());
+                }
+                else
+                {
+                    previousCounter.SetRight(counter.GetLeft());
+                }
+                return;
+            }
+            if (counter.GetLeft() != null && counter.GetRight() != null)
+            {
+                TreeElement searchCounter = counter.GetRight();
+                while (searchCounter.GetLeft() != null)
+                {
+                    searchCounter = searchCounter.GetLeft();
+                }
+                int tmp = searchCounter.GetValue();
+                Delete(searchCounter.GetValue());
+                counter.SetValue(tmp);
+                return;
+            }
+        }
 
         private TreeElement head;
     }
