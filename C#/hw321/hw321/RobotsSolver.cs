@@ -20,7 +20,7 @@ namespace hw321
         public RobotsSolver(int[,] array, bool[] rob)
         {
             nodes = rob.Length;
-            AdjacencyMatrix = array;
+            adjacencyMatrix = array;
             color = new int[nodes];
             for (int i = 0; i < nodes; i++)
             {
@@ -34,21 +34,21 @@ namespace hw321
         /// <summary>
         /// обход графа
         /// </summary>
-        /// <param name="NodeNumber"></param>
-        public void TraversingGraph(int NodeNumber)
+        /// <param name="nodeNumber"></param>
+        public void TraversingGraph(int nodeNumber)
         {
-            if (color[NodeNumber] == 1)
+            if (color[nodeNumber] == 1)
             {
                 return;
             }
-            color[NodeNumber] = 1;
+            color[nodeNumber] = 1;
             for (int i = 0; i < nodes; i++)
             {
-                if (AdjacencyMatrix[NodeNumber, i] == 1 && NodeNumber != i)
+                if (adjacencyMatrix[nodeNumber, i] == 1 && nodeNumber != i)
                 {
                     for (int j = 0; j < nodes; j++)
                     {
-                        if (AdjacencyMatrix[i, j] == 1 && i != j)
+                        if (adjacencyMatrix[i, j] == 1 && i != j)
                         {
                             TraversingGraph(j);
                         }
@@ -78,7 +78,7 @@ namespace hw321
         }
 
         private int[] color;
-        private int[,] AdjacencyMatrix;
+        private int[,] adjacencyMatrix;
         private bool[] robots;
         private int nodes;
     }
